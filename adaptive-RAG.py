@@ -24,7 +24,7 @@ from dotenv import load_dotenv
 load_dotenv() 
 
 
-local_llm = "llama3"
+local_llm = "phi3"
 tavily_api_key = os.environ['TAVILY_API_KEY'] 
 st.title("Multi-PDF ChatBot using LLAMA3 & Adaptive RAG")
 user_input = st.text_input("Question:", placeholder="Ask about your PDF", key='input')
