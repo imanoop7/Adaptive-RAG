@@ -38,7 +38,7 @@ if process:
         st.stop()
 
 
-# Ensure the temp directory exists
+
     temp_dir = 'temp'
     if not os.path.exists(temp_dir):
         os.makedirs(temp_dir)
