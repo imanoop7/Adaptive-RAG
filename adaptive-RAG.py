@@ -1,6 +1,6 @@
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import GPT4AllEmbeddings
+from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from langchain.prompts import PromptTemplate
 from langchain_community.chat_models import ChatOllama
 from langchain_core.output_parsers import JsonOutputParser
@@ -64,12 +64,22 @@ if process:
         chunk_size=250, chunk_overlap=0
     )
     text_chunks = text_splitter.split_documents(data)
+    
+    #Embedding
+    model_name = "BAAI/bge-large-en"
+    model_kwargs = {'device': 'cpu'}
+    encode_kwargs = {'normalize_embeddings': True}
+    embeddings = HuggingFaceBgeEmbeddings(
+        model_name=model_name,
+        model_kwargs=model_kwargs,
+        encode_kwargs=encode_kwargs
+    )
 
     # Add to vectorDB
     vectorstore = Chroma.from_documents(
         documents=text_chunks,
         collection_name="rag-chroma",
-        embedding=GPT4AllEmbeddings(),
+        embedding=embeddings,
     )
     retriever = vectorstore.as_retriever()
     llm = ChatOllama(model=local_llm, format="json", temperature=0)
