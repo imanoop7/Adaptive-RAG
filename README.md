@@ -34,8 +34,7 @@ To run this project, you need the following dependencies:
 
 3. Upload PDF Files: Use the Streamlit interface to upload one or more PDF files.
 
-4. Ask Questions: Enter your questions in the provided input field to receive answers based on the uploaded 
-    PDFs or web search results.
+4. Ask Questions: Enter your questions in the provided input field to receive answers based on the uploaded PDFs or web search results.
 
 ## Project Structure
 `adaptive-RAG.py`:  The main Streamlit application script..
